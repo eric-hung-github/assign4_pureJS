@@ -1,5 +1,5 @@
 //canvas setting
-var canvas = document.getElementById("mainCanvas");
+var canvas = document.getElementById("pde");
 var ctx = canvas.getContext('2d');
 //------------------------------------------------------
 
