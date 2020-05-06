@@ -8,16 +8,23 @@ var soldier = new Image();
 soldier.src = "img/soldier.png";
 //------------------------------------------------------
 
-// 
-var x = 10;
-
+var x=10;
 
 // main draw
 
+function drawSoil() {
+
+}
 
 function draw() {
+    ctx.drawImage(soldier,x++,0);
     
-    ctx.drawImage(soldier,0,0);
+    ctx.fillRect(25, 25, 100, 100);
+    ctx.clearRect(45, 45, 60, 60);
+    ctx.strokeRect(50, 50, 50, 50);
+
+    
+
 }
 
 setInterval(draw(), 100);
