@@ -1,3 +1,4 @@
+size(640, 480);
 void void setup() {
 	
 }
