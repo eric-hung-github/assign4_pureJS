@@ -1,30 +1,54 @@
-//canvas setting
+//-------------------------------------------------------
+//  const game setting
+//-------------------------------------------------------
+
+// set a frame in ms
+const frame=1000/60;
+
+//-------------------------------------------------------
+// canvas setting
+//-------------------------------------------------------
 var canvas = document.getElementById("pde");
 var ctx = canvas.getContext('2d');
-//------------------------------------------------------
 
-// img setting------------------------------------------
-var soldier = new Image();
-soldier.src = "img/soldier.png";
-//------------------------------------------------------
 
-var x=10;
+//-------------------------------------------------------
+// img loadding
+//-------------------------------------------------------
+//preLoadImages();
+//checkPreloadImg();
 
-// main draw
 
-function drawSoil() {
 
+
+
+//-------------------------------------------------------
+// update a frame
+//-------------------------------------------------------
+function update(){
+    
 }
 
+//-------------------------------------------------------
+// draw
+//-------------------------------------------------------
 function draw() {
-    ctx.drawImage(soldier,x++,0);
-    
-    ctx.fillRect(25, 25, 100, 100);
-    ctx.clearRect(45, 45, 60, 60);
-    ctx.strokeRect(50, 50, 50, 50);
+    // draw background
+    ctx.drawImage(bg,0,0);
 
-    
 
+    window.requestAnimationFrame(draw);
 }
 
-setInterval(draw(), 100);
+//-------------------------------------------------------
+// start animation
+//-------------------------------------------------------
+var loader=loadImages(imagesSrcStr,function(){
+    variblize();
+    draw();
+    setInterval(update,frame);
+});
+// draw canvas
+//draw();
+// update a frame
+//setInterval(update,frame);
