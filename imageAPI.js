@@ -1,4 +1,4 @@
-
+// images src
 var imagesSrcStr = [
     "img/bg.jpg",
     "img/cabbage.png",
@@ -65,6 +65,14 @@ var imagesSrcStr = [
     "img/stones/stone1/stone1_4.png"
 ]
 
+// var Images
+var title, gameover, startNormal, startHovered, restartNormal, restartHovered;
+var groundhogIdle, groundhogLeft, groundhogRight, groundhogDown;
+var bg, life, cabbage, stone1, stone2, soilEmpty;
+var soldier;
+var soil0, soil1, soil2, soil3, soil4, soil5;
+
+var soils, stones;
 
 //-------------------------------------------------------
 //  preloading images
@@ -90,7 +98,6 @@ function loadImages(arr, callback) {
         }
     }
 }
-
 
 //-------------------------------------------------------
 //  variblize Images
@@ -123,19 +130,21 @@ function variblize() {
     soil5 = images["img/soil5.png"];
 }
 
-// var Images
-var title, gameover, startNormal, startHovered, restartNormal, restartHovered;
-var groundhogIdle, groundhogLeft, groundhogRight, groundhogDown;
-var bg, life, cabbage, stone1, stone2, soilEmpty;
-var soldier;
-var soil0, soil1, soil2, soil3, soil4, soil5;
-
-var soils, stones;
-
-
-
+//-------------------------------------------------------
+//  is hover a image
+//-------------------------------------------------------
+function isHoverImg(img,posX,posY){
+    if(mousePos.x<posX||mousePos.y<posY||mousePos.x>posX+img.naturalWidth||mousePos.y>posY+img.naturalHeight){
+        return false;
+    }
+    return true;
+}
 
 
+
+//-------------------------------------------------------
+//  src of all images *copy from preload.pde
+//-------------------------------------------------------
 /*preLoading
 img/bg.jpg",
 "img/cabbage.png",

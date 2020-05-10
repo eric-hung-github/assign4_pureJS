@@ -4,12 +4,14 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
+  
+  <script src="imageAPI.js"></script>
 </head>
 <body>
-  <canvas id="pde" data-processing-sources="assign4.pde preload.pde"></canvas>
-  <script src="imageAPI.js"></script>
+  <canvas id="pde" height="480" width="640" data-processing-sources="assign4.pde preload.pde"></canvas>
+  <script src="control.js"></script>
+  <script src="chunk.js"></script>
   <script src="draw.js"></script>
-  
   
   <div id="console"></div>
 </body>
