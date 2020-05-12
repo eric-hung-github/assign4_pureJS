@@ -14,8 +14,6 @@ const GRASS_HEIGHT = 15;
 const START_BUTTON_X = 248;
 const START_BUTTON_Y = 360;
 
-
-
 // sun setting
 const sunInnerSize = 120, sunOutterSize = 10;
 
@@ -23,46 +21,51 @@ const sunInnerSize = 120, sunOutterSize = 10;
 const grassHeight = 15;
 
 // life setting
-var lifePo;
+var lifePoint;
 const lifeSpace = 20, lifeSize = 50;
-
-// groundhog setting
-var groundhogPosX, groundhogPosY;
-var groundhogMove;
-var groundhogMoveX, groundhogMoveY;
-const groundhogFrame = 16;
-var groundhogFrameCount = 0;
-
-
-// move canva
-var nowLevel = 0;
 
 //-------------------------------------------------------
 // intialize
 //-------------------------------------------------------
 function intialize() {
+    lifePoint = 3;
     gameState = gameStatus.start;
-
     generateSoils();
+    generateSoilder();
+    generateCabbage();
+
+    groundhogPosX = 4;
+    groundhogPosY = 1;
 }
 
 //-------------------------------------------------------
 // update a frame
 //-------------------------------------------------------
 function update() {
+    switch (gameState) {
+        case gameStatus.start:
+
+            break;
+        case gameStatus.run:
+            updateSoldier();
+            updateGroundhog();
+            break;
+        case gameStatus.win:
+
+            break;
+        case gameStatus.over:
+
+            break;
+
+        default:
+            break;
+    }
     //console.log(mouseClick);
-}
-
-function updateGroundhog(){
 
 }
 
-//-------------------------------------------------------
-// moving
-//-------------------------------------------------------
-function isMove(){
 
-}
+
 
 //-------------------------------------------------------
 // draw
@@ -83,7 +86,7 @@ function draw() {
 
             break;
         case gameStatus.over:
-
+            drawGameover();
             break;
 
         default:
@@ -95,29 +98,54 @@ function draw() {
 }
 
 // draw Start
-function drawStaert(){
+function drawStaert() {
     ctx.drawImage(title, 0, 0);
-    if (isHoverImg(startHovered, START_BUTTON_X,START_BUTTON_Y )) {
+    if (isHoverImg(startHovered, START_BUTTON_X, START_BUTTON_Y)) {
         ctx.drawImage(startHovered, START_BUTTON_X, START_BUTTON_Y);
-        if(mouseClick){
-            gameState=gameStatus.run;
+        if (mouseClick) {
+            // intialize game
+            intialize();
+            gameState = gameStatus.run;
         }
-    }else{
+    } else {
         ctx.drawImage(startNormal, START_BUTTON_X, START_BUTTON_Y);
     }
 }
-var tt=0;
-// draw Run
-function drawRun(){
-    ctx.drawImage(bg,0,0);
 
-    drawSoil(tt+=2);
+function drawGameover() {
+    ctx.drawImage(gameover, 0, 0);
+    if (isHoverImg(restartHovered, START_BUTTON_X, START_BUTTON_Y)) {
+        ctx.drawImage(restartHovered, START_BUTTON_X, START_BUTTON_Y);
+        if (mouseClick) {
+            // intialize game
+            intialize();
+            gameState = gameStatus.run;
+        }
+    } else {
+        ctx.drawImage(restartNormal, START_BUTTON_X, START_BUTTON_Y);
+    }
+}
+
+// draw Run
+function drawRun() {
+    ctx.drawImage(bg, 0, 0);
+
+    let tran = groundhog.y - 3 * chunkSize;
+    //console.log(tran)
+
+    drawSun();
+    drawSoil(tran);
+    drawCabbage(tran);
+    drawSolider(tran);
+    drawLife();
+    drawGroundhog();
+
 }
 
 //-------------------------------------------------------
 // start animation
 //-------------------------------------------------------
-var loader = loadImages(imagesSrcStr, function () {
+loadImages(imagesSrcStr, function () {
 
     // new vars of images after loaded
     variblize();
@@ -131,7 +159,3 @@ var loader = loadImages(imagesSrcStr, function () {
     // set timer to update all
     setInterval(update, frame);
 });
-
-//draw();
-// update a frame
-//seterval(update,frame);

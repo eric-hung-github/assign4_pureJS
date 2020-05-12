@@ -23,14 +23,39 @@ window.onmousemove = function (e) {
 //-------------------------------------------------------
 var mouseClick = false;
 
-canvas.addEventListener("mousedown",function (){mouseClick = true;});
-canvas.addEventListener("mouseup",function (){mouseClick = false;});
+canvas.addEventListener("mousedown", function () { mouseClick = true; });
+canvas.addEventListener("mouseup", function () { mouseClick = false; });
 
 //-------------------------------------------------------
 //  keyboard click
 //-------------------------------------------------------
-var keyPress=false;
+var keyPress = false;
 var keyCode;
 
-canvas.addEventListener("keydown",function (e){keyPress=true;keyCode=e.keyCode});
-canvas.addEventListener("keyup",function (e){keyPress=false;});
+canvas.addEventListener("keydown", function (e) {
+    keyPress = true;
+    keyCode = e.keyCode;
+    if(groundhog.way != groundhogWay.idle){
+        return;
+    }
+    switch (keyCode) {
+        case 40:
+            groundhog.way = groundhogWay.down;
+            break;
+        case 37:
+            groundhog.way = groundhogWay.left;
+            break;
+        case 39:
+            groundhog.way = groundhogWay.right;
+            break;
+
+        default:
+            break;
+    }
+
+});
+canvas.addEventListener("keyup", function (e) {
+    keyPress = false;
+});
+
+canvas.addEventListener("keypress", function (e) { groundhogMove(e.key); });

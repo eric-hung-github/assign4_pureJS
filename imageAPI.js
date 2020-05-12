@@ -1,3 +1,5 @@
+
+
 // images src
 var imagesSrcStr = [
     "img/bg.jpg",
