@@ -32,7 +32,7 @@ function moveable(posx,posy,dir){
     if(posy+dir[1]==-1&&posx+dir[0]>=0&&posx+dir[0]<chunkColumn){
         return true;
     }
-    if(posx+dir[0]>0&&posx+dir[0]<chunkColumn&&posy+dir[1]>=0&&posy+dir[1]<=chunkRow){
+    if(posx+dir[0]>=0&&posx+dir[0]<chunkColumn&&posy+dir[1]>=0&&posy+dir[1]<=chunkRow){
         if(soils[posy+dir[1]][posx+dir[0]].lp<=0){
             return true;
         }
